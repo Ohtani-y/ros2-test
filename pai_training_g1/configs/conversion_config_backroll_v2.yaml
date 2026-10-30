@@ -1,0 +1,6 @@
+bag_dir: "/home/ubuntu/dataset/rosbags/g1_backroll/success"
+output_dir: "/home/ubuntu/dataset/lerobot_dataset/g1_backroll_v2"
+config: "/workspace/pai_training_g1/configs/g1_backroll_features_v2.py"   # 変更: 骨盤の姿勢を environment_state に入れる版
+target_freq: 50
+trim_idle: true   # 追加: 動き出す前・終わった後の静止部分を切る
+pad: false        # 追加: 最終フレームで埋めない（最後の姿勢＝最初の姿勢のため）

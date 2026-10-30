@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+
+# バックアップ・ログ
+*.bak*
+*.log
+
+# 学習済みモデル（1 つ約 600 MB。GitHub の 1 ファイル 100 MB の上限を超える）
+checkpoints/
+
+# 結果の動画・画像
+export/
+
+# キーポーズ探しの試行の記録（744 回分・約 160 MB）
+g1_moveit_config/roll_records/
+
+# setup_g1.sh（make_urdf.py）が公式の G1 から作るもの
+g1_gazebo/meshes/
+g1_gazebo/urdf/

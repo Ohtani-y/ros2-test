@@ -1,0 +1,4 @@
+# コンテナ（Linux）で動かすので、改行は LF にそろえる
+* text=auto eol=lf
+# Windows の PowerShell で実行するもの
+*.ps1 text eol=crlf
