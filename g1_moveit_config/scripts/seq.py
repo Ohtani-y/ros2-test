@@ -14,6 +14,7 @@ Roll: 0 = lying on the back, -90 = sitting up, +90 = on the shoulders, 180 = rol
 import json
 import math
 import os
+import shlex
 import sys
 import time
 
@@ -275,10 +276,10 @@ def main():
             shutil.copy(urdf, rec)
         if os.path.exists('/tmp/roll_trials/seq_video.mp4'):
             shutil.move('/tmp/roll_trials/seq_video.mp4', os.path.join(rec, 'video.mp4'))
-        cmd = f'python3 {os.path.basename(sys.argv[0])} {name} ' + ' '.join(f"'{a}'" for a in sys.argv[2:])
+        cmd = 'python3 ' + shlex.join([os.path.basename(sys.argv[0]), name] + sys.argv[2:])
         along = se[0] * rr.ref[0] + se[1] * rr.ref[1]
         belly = 2 * (qe[0] * qe[2] - qe[1] * qe[3])
-        json.dump(dict(time=time.strftime('%Y-%m-%d %H:%M:%S'), name=name, args=sys.argv[2:], rerun=f'cd {rec} && {cmd}',
+        json.dump(dict(time=time.strftime('%Y-%m-%d %H:%M:%S'), name=name, args=sys.argv[2:], rerun=f'cd {shlex.quote(rec)} && {cmd}',
                        metrics=dict(min=rmin[1], max=rmax[1], t_max=rmax[0], end=rows[-1][1], inverted=-min(sz), dx=dx,
                                     along=along, up=se[2], belly=belly),
                        seq=seq, log=log), open(os.path.join(rec, 'record.json'), 'w'), indent=1)
